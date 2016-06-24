@@ -1,14 +1,25 @@
 package com.ecom.dao;
 
+import java.security.Principal;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.PageContext;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ecom.models.Cart;
 import com.ecom.models.Customer;
+import com.ecom.models.ShippingAddress;
 import com.ecom.models.UserRoles;
+
 
 
 @Repository
@@ -21,14 +32,17 @@ public class CustomerDAO {
 	public void addCustomer(Customer p) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(p);
+		session.save(p);		
 		UserRoles ur = new UserRoles();
 		ur.setAuthority("ROLE_USER");
-		ur.setUsername(p.getUsername());
-		System.out.println(p.getPassword());
-		ur.setPassword(p.getPassword());
-		ur.setEnabled(1);
+		ur.setCustId(p.getCustId());
 		session.save(ur);
+		Cart c = new Cart();
+		c.setGrandTotal(0);
+		c.setUsersDetail(p);
+		session.save(c);
+		p.setCart(c);
+		session.update(p);
 		tx.commit();
 		session.close();
 	}
@@ -39,5 +53,23 @@ public class CustomerDAO {
 		session.close();
 		return p;
 	}
+	 public List<Customer> getAllUsers() {
+	        Session session = sessionFactory.openSession();
+	        Query query = session.createQuery("from Customer");
+	        @SuppressWarnings("unchecked")
+			List<Customer> usersDetail = query.list();
 
+	        return usersDetail;
+	    }
+
+	    public Customer getUserByUsername (String username) {
+	        Session session = sessionFactory.openSession();
+	        
+	        Query query = session.createQuery("from Customer where username = ?");
+	        query.setString(0, username);
+
+	        return (Customer) query.uniqueResult();
+	    }
+
+	   
 }

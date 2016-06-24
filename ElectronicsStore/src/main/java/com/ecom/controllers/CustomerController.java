@@ -2,7 +2,13 @@ package com.ecom.controllers;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,8 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ecom.models.Customer;
-
-import com.ecom.sevices.CustomerServices;
+import com.ecom.services.CustomerServices;
 
 
 @Controller
@@ -58,20 +63,21 @@ public class CustomerController {
 	}
 	
 	 @RequestMapping(value="/logout", method = RequestMethod.GET)
-	 public String logout(ModelMap model) {
+	 public ModelAndView logout(HttpServletRequest request,HttpServletResponse response) {
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 if (auth != null) {
+		 new SecurityContextLogoutHandler().logout(request, response, auth);
+		 }
 	 
-	  return "Login";
+	  return new ModelAndView("Login","logoutmsg", "Logged Out Successfully");
 	 
 	 }
 	 @RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	    public String printWelcome(ModelMap model, Principal principal) {
-
-	     //   String name = principal.getName();
-	     //   model.addAttribute("username", name);
-	     //   System.out.println(name);
 	        return "index";
 
 	    }
+	 
 
 
 }

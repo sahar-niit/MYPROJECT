@@ -18,6 +18,13 @@
  padding: 8px;
  margin: 16px;
 }
+.logoutblock {
+ color: blue;
+ background-color: lightgreen;
+ border: 3px solid blue;
+ padding: 8px;
+ margin: 16px;
+}
 </style>
 </head>
 <body>
@@ -29,7 +36,11 @@
  
   </div>
  </c:if>
- 
+ <c:if test="${not empty logoutmsg }">
+   <div class="logoutblock">
+   <c:out value="${logoutmsg}" />
+   </div>
+ </c:if>
 <form role="form" action="<c:url value='j_spring_security_check' />" method="post" >
   <div class="form-group">
     <label for="email">UserName:</label>
@@ -40,8 +51,9 @@
     <input type="password" class="form-control" name="j_password" />
   </div>
   
-  <button type="submit" class="btn btn-default" >Submit</button>
+  <button type="submit"  class="btn btn-default" >Submit</button>
 </form>
+<h4>Not A User ? <a href="register">Sign Up Here</a></h4>
 <%@ include file="footer.jsp" %>
 </div>
 </body>

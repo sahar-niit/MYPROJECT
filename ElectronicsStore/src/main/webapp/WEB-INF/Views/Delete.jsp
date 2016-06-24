@@ -25,11 +25,7 @@
  </form>
  </div>
 <div class="col-sm-6">
-<form action="/ElectronicsStore" method="get" role="form">
-  
-  
-    <input type="submit" value="Cancel" class="btn btn-info" />
- </form>
+	<a href="<c:url value="disp?id=4" />" class="btn btn-primary">Cancel</a>
  </div>
  </div>
 <%@ include file="footer.jsp" %>

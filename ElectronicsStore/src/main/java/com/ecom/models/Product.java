@@ -1,26 +1,36 @@
 package com.ecom.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotBlank;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Products")
-public class Product {
+
+public class Product  implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name = "prod_seq", sequenceName = "prod_seq")
+	@GeneratedValue(strategy=GenerationType.AUTO,generator = "prod_seq")
+	
 	@Column(name="PID")
 	private int pid;
 	@NotNull
@@ -43,6 +53,7 @@ public class Product {
 	private String description;
 	@NotNull
 	@Transient
+	@JsonIgnore
 	private MultipartFile file;
     
 	

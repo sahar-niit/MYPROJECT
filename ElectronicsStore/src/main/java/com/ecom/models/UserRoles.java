@@ -5,42 +5,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="UserRoles")
-public class UserRoles {
+public class UserRoles  {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
+	@GeneratedValue(strategy=GenerationType.AUTO,generator = "user_seq")
 	@Column(name="UID")
 	private int uid;
-	@Column(name="username")
-	String username;
-	@Column(name="password")
-	String password;
+	
 	@Column(name="authority")
 	String authority;
-	@Column(name="enabled")
-	int enabled;
-	
-	public void setUsername(String nm)
+  
+	@Column(name="custId")
+	int custId;
+
+	public void setCustId(int cid)
 	{
-		username=nm;
+		custId=cid;
 	}
-	
-	public String getUsername()
+	public int getCustId()
 	{
-		return username;
+		return custId;
 	}
-	
-	public void setPassword(String nm)
+
+	public void setUid(int id)
 	{
-		password=nm;
+		uid=id;
 	}
-	
-	public String getPassword()
+	public int getUid()
 	{
-		return password;
+		return uid;
 	}
 
 	public void setAuthority(String nm)
@@ -53,15 +51,7 @@ public class UserRoles {
 		return authority;
 	}
 
-	public void setEnabled(int x)
-	{
-		enabled=x;
-	}
 	
-	public int  getEnabled()
-	{
-		return enabled;
-	}
 	
 
 }

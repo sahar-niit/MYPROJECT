@@ -33,6 +33,7 @@
 	<c:set var="pid" value="${param.id}"></c:set>
 	<table class="table table-striped;">
 	<tr>
+	<th></th>
 	<th>Product </th>
 	<th>Quantity Available</th>
 	<th>Price</th>
@@ -40,6 +41,7 @@
 	</tr>
 	<c:if test="${pid=='1'}" >
 	<tr ng-repeat="product in Data|filter:{category:'Mobiles'}|filter:search" >
+	<td><img alt="NO IMAGE" height="50px" width="50px" src="<c:url value='/resources/Images/{{product.category}}/{{product.image}}'/>" /></td>
 	<td>{{product.name}}</td>
 	<td>{{product.qty}}</td>
 	<td>{{product.price}}</td>
@@ -55,6 +57,7 @@
 	</c:if>
 	<c:if test="${pid=='2'}" >
 	<tr ng-repeat="product in Data|filter:{category:'Laptops'}|filter:search" >
+	<td><img alt="NO IMAGE" height="50px" width="50px" src="<c:url value='/resources/Images/{{product.category}}/{{product.image}}'/>" /></td>
 	<td>{{product.name}}</td>
 	<td>{{product.qty}}</td>
 	<td>{{product.price}}</td>
@@ -70,6 +73,7 @@
 	</c:if>
 	<c:if test="${pid=='3'}" >
 	<tr ng-repeat="product in Data|filter:{category:'Cameras'}|filter:search" >
+	<td><img alt="NO IMAGE" height="50px" width="50px" src="<c:url value='/resources/Images/{{product.category}}/{{product.image}}'/>" /></td>
 	<td>{{product.name}}</td>
 	<td>{{product.qty}}</td>
 	<td>{{product.price}}</td>
@@ -85,6 +89,7 @@
 	</c:if>
 	<c:if test="${pid=='4'}" >
 	<tr ng-repeat="product in Data|filter:search" >
+	<td><img alt="NO IMAGE" height="50px" width="50px" src="<c:url value='/resources/Images/{{product.category}}/{{product.image}}'/>" /></td>
 	<td>{{product.name}}</td>
 	<td>{{product.qty}}</td>
 	<td>{{product.price}}</td>

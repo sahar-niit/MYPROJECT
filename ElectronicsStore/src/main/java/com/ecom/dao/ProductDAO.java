@@ -24,7 +24,7 @@ public class ProductDAO {
 	private SessionFactory sessionFactory;
 	
 	
-	@Transactional
+	
 	public void addProduct(Product p) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -32,7 +32,7 @@ public class ProductDAO {
 		tx.commit();
 		session.close();
 	}
-	@Transactional
+	
 	public void updateProduct(Product p) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -44,21 +44,21 @@ public class ProductDAO {
 	public List<Product> listProduct() {
 		Session session = sessionFactory.openSession();
 		
-		@SuppressWarnings("deprecation")
 		List<Product> pList = session.createQuery("from Product").list();
 		session.close();
 		return pList;
 	}
 
 	public Product getProductById(int id) {
+		
 		Session session = sessionFactory.openSession();		
-		
+		System.out.println(session);
 		Product p = (Product) session.load(Product.class, new Integer(id));
-		
+		System.out.println(p.getName());
 		session.close();
 		return p;
 	}
-	@Transactional
+	
 	public void removeProduct(int id) {
 		Session session = sessionFactory.openSession();
 		

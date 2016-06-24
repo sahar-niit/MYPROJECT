@@ -1,0 +1,27 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+ 
+             
+  <var name="ship" class="com.ecom.models.ShippingAddress" />  
+   <var name="pay" class="com.ecom.models.CardDetails" />  
+<view-state id="memberShip" view="cartPage">
+<transition on="checkout" to="shippingPage" ></transition>
+
+</view-state>
+  
+<view-state id="shippingPage" view="shipping" model="ship">
+<transition on="payment" to="paymentPage"></transition>
+<transition on="cancel" to="home"></transition>
+</view-state>
+
+<view-state id="paymentPage" view="payment" model="pay">
+<transition on="payment" to="paymentPage"></transition>
+</view-state>
+<end-state id="home" view="index" ></end-state>
+	
+
+
+	
+ </flow>

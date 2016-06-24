@@ -1,4 +1,6 @@
-package com.ecom.sevices;
+package com.ecom.services;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,10 @@ public class CustomerServices {
 	public Customer getCustomerById(int id) {
 		return cust.getCustomerById(id);
 	}
-
+	 public List<Customer> getAllUsers() {
+		 return cust.getAllUsers();
+	 }
+	  public Customer getUserByUsername (String username) {
+		  return cust.getUserByUsername(username);
+	  }
 }
