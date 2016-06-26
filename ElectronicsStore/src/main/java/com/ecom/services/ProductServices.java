@@ -2,6 +2,8 @@ package com.ecom.services;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -32,8 +34,8 @@ public class ProductServices {
 	public void removeProduct(int id) {
 		productDAO.removeProduct(id);
 	}
-	public void storeFile(Product p)
+	public void storeFile(Product p, HttpServletRequest request)
 	{
-		productDAO.storeFile(p);
+		productDAO.storeFile(p,request);
 	}
 }

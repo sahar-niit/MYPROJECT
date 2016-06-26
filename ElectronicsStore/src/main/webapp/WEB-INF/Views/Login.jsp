@@ -16,7 +16,6 @@
  background-color: #ffEEEE;
  border: 3px solid #ff0000;
  padding: 8px;
- margin: 16px;
 }
 .logoutblock {
  color: blue;
@@ -43,11 +42,11 @@
  </c:if>
 <form role="form" action="<c:url value='j_spring_security_check' />" method="post" >
   <div class="form-group">
-    <label for="email">UserName:</label>
+    <label for="username">UserName:</label>
     <input type="text"  name="j_username"  class="form-control" />
   </div>
   <div class="form-group">
-    <label for="pwd">Password:</label>
+    <label for="password">Password:</label>
     <input type="password" class="form-control" name="j_password" />
   </div>
   

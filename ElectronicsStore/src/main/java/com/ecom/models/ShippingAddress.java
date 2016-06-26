@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 
 
@@ -23,22 +26,29 @@ public class ShippingAddress implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO,generator = "ship_seq")
 	@Column(name="ShipId")
 	private int shipId;
+	@NotBlank (message = "House no. Required")
 	@Column(name="House_no")
+	
 	private String houseNumber;
+	@NotBlank (message = "Adrress Required")
 	@Column(name="addressLine1")
     private String addressLine1;
 	@Column(name="addressLine2")
     private String addressLine2;
+	@NotBlank (message = "City Required")
 	@Column(name="city")
     private String city;
+	@NotBlank (message = "State Required")
 	@Column(name="state")
     private String state;
+	@NotBlank (message = "Country Required")
 	@Column(name="country")
     private String country;
+	@NotBlank (message = "Zip Code Required")
 	@Column(name="zipcode")
     private String zipCode;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="custid")
     private Customer usersDetail;
     

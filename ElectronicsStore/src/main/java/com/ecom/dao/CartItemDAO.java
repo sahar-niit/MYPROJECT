@@ -20,7 +20,7 @@ public class CartItemDAO {
 	 @Autowired
 	    private SessionFactory sessionFactory;
 	 	
-	 	@Transactional
+	 	
 	    public void addCartItem(CartItem cartItem) {
 	        Session session = sessionFactory.openSession();
 	        Transaction tx = session.beginTransaction();
@@ -31,7 +31,7 @@ public class CartItemDAO {
 	        session.close();
 	    }
 
-	 	@Transactional
+	 	
 	    public void removeCartItem (CartItem cartItem) {
 	        Session session = sessionFactory.openSession();
 	        Transaction tx = session.beginTransaction();
@@ -41,7 +41,7 @@ public class CartItemDAO {
 	        session.close();
 	        
 	    }
-	 	@Transactional
+	 	
 	    public void removeAllCartItems(Cart cart) {
 	        List<CartItem> cartItems = cart.getCartItems();
 

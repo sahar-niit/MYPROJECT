@@ -47,16 +47,16 @@ public class CustomerController {
 		return new ModelAndView("Register","customer",new Customer());
 	}
 	@RequestMapping(value="/register" ,method=RequestMethod.POST )
-	public String RegisterActionPage(@ModelAttribute("customer") @Validated Customer c, BindingResult result, Model model)
+	public ModelAndView RegisterActionPage(@ModelAttribute("customer") @Validated Customer c, BindingResult result, Model model)
 	{
 		if (result.hasErrors()) {
 			
-			return "Register";
+			return new  ModelAndView( "Register");
 		}
 		else{
 			  service.addCustomer(c);
 			
-			return "Login";
+			return new ModelAndView("Login","logoutmsg","Registered Sucessfully.Please Login to your Account.");
 			
 		}
 		

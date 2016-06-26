@@ -31,7 +31,7 @@ public class Cart  implements Serializable {
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
 	
-	 	@OneToOne
+	 	@OneToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name = "custId")
 	    @JsonIgnore
 	    private Customer usersDetail;

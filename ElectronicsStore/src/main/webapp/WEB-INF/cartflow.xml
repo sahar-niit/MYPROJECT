@@ -6,20 +6,38 @@
              
   <var name="ship" class="com.ecom.models.ShippingAddress" />  
    <var name="pay" class="com.ecom.models.CardDetails" />  
+   <var name="saveShip" class="com.ecom.services.ShippingServices" />
+   <var name="saveCardData" class="com.ecom.services.CardDetailService" />
 <view-state id="memberShip" view="cartPage">
 <transition on="checkout" to="shippingPage" ></transition>
 
 </view-state>
   
 <view-state id="shippingPage" view="shipping" model="ship">
-<transition on="payment" to="paymentPage"></transition>
-<transition on="cancel" to="home"></transition>
+<transition on="payment" to="saveShipDetails"></transition>
 </view-state>
 
+<action-state id="saveShipDetails">
+<evaluate expression="saveShip.addShippingAddress(ship,flowRequestContext)"></evaluate>
+<transition on="success" to="paymentPage"></transition>
+</action-state>
+
 <view-state id="paymentPage" view="payment" model="pay">
-<transition on="payment" to="paymentPage"></transition>
+<transition on="paynow" to="saveCard" ></transition>
 </view-state>
+
+<action-state id="saveCard">
+<evaluate expression="saveCardData.addCardDetail(pay,flowRequestContext)"></evaluate>
+<transition on="success" to="order"></transition>
+<transition on="error" to="paymentPage"></transition>
+</action-state>
+
+
+
+
+
 <end-state id="home" view="index" ></end-state>
+<end-state id="order" view="Order"></end-state>
 	
 
 

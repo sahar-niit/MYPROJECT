@@ -13,8 +13,22 @@
 <body>
 <div class="container">
 <%@ include file="header.jsp" %>
-<div style="background-color: black; color:white; font-family: forte; font-size: 24px;">
-Its part of Meast E-Commerce Trading LLC, is the regions Premier online shopping portal for quality consumer goods, ranging from mobile phones to laptops, home appliances to well being equipment, perfumes to cosmetics and printers to cameras, established in 2008, with its headquarters in Mumbai.
+<div>
+<img width="100%" height="250px" src="<c:url value='/resources/Images/iphoneblack.jpg' />" />
+</div>
+<div class="row">
+<div class="col-sm-3">
+<img width="100%" height="250px"  src="<c:url value='/resources/Images/camera.jpg' />" />
+</div>
+<div class="col-sm-6" style="background-color: black; height:250px; color:white; font-family: Arial; font-size: 24px;">
+Its part of Meast E-Commerce Trading LLC.
+It is the regions Premier online shopping portal for quality consumer goods, 
+ranging from mobile phones, laptops, and cameras, 
+established in 2008, with its headquarters in Panvel.
+</div>
+<div class="col-sm-3">
+<img width="100%" height="250px" src="<c:url value='/resources/Images/laptop.jpg' />" />
+</div>
 </div>
 <%@ include file="footer.jsp" %>
 </div>

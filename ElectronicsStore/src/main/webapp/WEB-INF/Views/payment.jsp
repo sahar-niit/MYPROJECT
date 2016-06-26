@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,41 +15,36 @@
   <script src="<c:url value='/resources/js/AngularjsController.js'/>"></script>
 </head>
 <body>
-<div class="container">
+<div class="container"   ng-app="myApp" ng-controller = "myCtrl" ng-init="retrieveCart()" >
 <%@ include file="header.jsp" %>
- <form:form action="${pageContext.request.contextPath}/cardDetail/${order.cart.cartId}" method="post"
-                   commandName="pay">
-                   
-                   <div class="span9 margin-top">
-                   <div class="span9 center margin-bottom"> 
-					<h3>Payment Details </h3>
-					</div>
-					
-					<div class="span4">
-					  <div class="control-group">
-					  <label class="control-label">Card Type</label>
-						<div class="controls docs-input-sizes">
+<h3>Payment Details </h3>
+ <form:form role="form" method="post"  modelAttribute="pay">
+  <div class="form-group">
+					  <label>Card Type</label>
+						
 						<form:errors path="cardType" cssStyle="color: #ff0000"/>
-						<form:select path="cardType">
+						<form:select class="form-control" path="cardType">
 			    		<form:option value="" label="----Please Select------" />
 						<form:option value="Visa-Debit/Credit" label="Visa-Debit/Credit" />
     					<form:option value="Mastercard" label="Mastercard" />
 			    		
 						</form:select>
 						</div>
-						</div>
-					  <div class="control-group">
-					  <label class="control-label">Card Number</label>
-						<div class="controls docs-input-sizes">
+						
+					  <div class="from-group">
+					  <label >Card Number</label>
+						
+						
+						<form:input path="cardNumber" id="name" class="form-control"/>
 						<form:errors path="cardNumber" cssStyle="color: #ff0000"/>
-						<form:input path="cardNumber" id="name" class="form-Control"/>
 						</div>
-						</div>
-						<div class="control-group">
-					  <label class="control-label">Expiry Date</label>
-						<div class="controls docs-input-sizes">
-						<form:errors path="expiryMonth" cssStyle="color: #ff0000"/>
-						 <form:select path="expiryMonth">
+						
+						<div class="form-group">
+					  <label >Expiry Date</label>
+						<div class="row">
+						<div class="col-sm-6">
+						
+						 <form:select path="expiryMonth" class="form-control" >
 				            <form:option value="" label="MM" />					     
 							<form:option value="01" label="01" />
     						<form:option value="02" label="02" />
@@ -63,11 +59,11 @@
     						<form:option value="11" label="11" />
     						<form:option value="12" label="12" />
 							</form:select>
+						<form:errors path="expiryMonth" cssStyle="color: #ff0000"/>	
 							</div>
-							<div class="control-group">
-							<div class="controls docs-input-sizes">
-							<form:errors path="expiryYear" cssStyle="color: #ff0000"/>
-							<form:select path="expiryYear">
+							<div class="col-sm-6">
+							
+							<form:select path="expiryYear" class="form-control">
 				    		<form:option value="" label="YYYY" />
     						<form:option value="2016" label="2016" />
     						<form:option value="2017" label="2017" />
@@ -85,43 +81,52 @@
     						<form:option value="2029" label="2029" />
     						<form:option value="2030" label="2030" />
 							</form:select>
+							<form:errors path="expiryYear" class="form-control" cssStyle="color: #ff0000"/>
+							</div>
+							
 						</div>
+						
 						</div>
-						</div>
-						</div>
-						<div class="span4">
-						<div class="control-group">
-					  <label class="control-label">CVV2/CVC2 Number</label>
-						<div class="controls docs-input-sizes">
+						
+						
+						<div class="form-group">
+					  <label >CVV  Number</label>
+						
+						
+						<form:password path="cvNumber" id="cvnumber" class="form-control"/>
 						<form:errors path="cvNumber" cssStyle="color: #ff0000"/>
-						<form:password path="cvNumber" id="cvnumber" class="form-Control"/>
 						</div>
-						</div>
-						<div class="control-group">
-					  <label class="control-label">Name ON Card</label>
-						<div class="controls docs-input-sizes">
+						
+						<div class="form-group">
+					  <label >Name ON Card</label>
+						
+						
+						<form:input path="nameOnCard" id="nameoncard" class="form-control"/>
 						<form:errors path="nameOnCard" cssStyle="color: #ff0000"/>
-						<form:input path="nameOnCard" id="nameoncard" class="form-Control"/>
 						</div>
-						</div>
-						<div class="control-group">
-					  <label class="control-label">ATM Pin</label>
-						<div class="controls docs-input-sizes">
+						
+						<div class="form-group">
+					  <label >ATM Pin</label>
+						
+						
+						<form:password path="atmPin" id="pin" class="form-control"/>
 						<form:errors path="atmPin" cssStyle="color: #ff0000"/>
-						<form:password path="atmPin" id="pin" class="form-Control"/>
 						</div>
-						</div>
-						<div class="control-group">
-					  <label >Total Amount :Rs. ${order.cart.grandTotal}</label>
-						</div>
-					<div class="span2 no_margin_left">
-					  <input type="submit" value="Pay Now" class="btn btn-primary pull-left">
-						 </div>
-						 <div class="span1 no_margin_left">
-					 	<a href="<c:url value="/" />" class="btn btn-danger pull-left">Cancel</a>
+						
+						<div class="form-group" >
+						<label>Total Amount to be Paid: </label>
+						<form:input disabled="true" path="totalCost"
+					  value="{{GrandTotalOfItems()}}" class="form-control" />
+					  </div>
+					  <div >
+					  
+						 <input type="hidden" name="_flowExecutionKey" />					
+					  <input type="submit"  value="Pay Now" name="_eventId_paynow"  class="btn btn-primary pull-left" />
+					
+					 	  <input type="submit" value="Cancel" name="_eventId_cancel"  class="btn btn-primary pull-left" />
 					    </div>
 				</div>
-        </div>
+       
         
         </form:form>
         <%@ include file="footer.jsp" %>

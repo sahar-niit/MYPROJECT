@@ -23,7 +23,7 @@
 <body>
 <div class="container" >
 <%@ include file="header.jsp" %>
-<form:form role="form" enctype="multipart/form-data" action="add" modelAttribute="product">
+<form:form role="form" enctype="multipart/form-data" action="checkadd" modelAttribute="product">
  <div class="form-group">
  <form:label  path="name">
 				<spring:message text="Product Name"/>
@@ -68,25 +68,13 @@
 </form:select>
 
  </div>
-<!-- 
- <div class="form-group">
- <form:label  path="image">
-				<spring:message text="Image Name"/>
-</form:label>
-  <form:input class="form-control" path="image" />
-  <form:errors path="name" >
-  <p class="errStyle">
- * Cannot be blank
- </p>
- </form:errors>
- </div>
- -->
+
  <div class="form-group">
  <form:label  path="description">
 				<spring:message text="Description"/>
 </form:label>
   <form:input class="form-control" path="description" />
-  <form:errors path="name">
+  <form:errors path="description">
   <p class="errStyle">
 * Cannot be blank
 </p>

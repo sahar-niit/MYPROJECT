@@ -25,6 +25,7 @@
 <%@ include file="header.jsp" %>
 <form:form modelAttribute="product" enctype="multipart/form-data" role="form" action="edit" >
 <form:input style="visibility:hidden;" path="pid"/>
+<form:input style="visibility:hidden;" path="image"/>
  <div class="form-group">
  <form:label  path="name">
 				<spring:message text="Product Name"/>
@@ -86,14 +87,17 @@
 </p>
  </form:errors>
  </div>
+ 
    <div class="form-group">
+   
  <label>Upload Image</label>
-  <form:input type="file" path="file"  class="form-control" />
+  <form:input type="file"  path="file"  class="form-control" />
    <form:errors path="file" >
   <p class="errStyle">
  * Cannot be blank
  </p>
  </form:errors>
+ Uploaded Image:<form:input disabled="true" path="image"/>
  </div>
  <div class="form-group">
  <input  class="btn btn-info"  type="submit"

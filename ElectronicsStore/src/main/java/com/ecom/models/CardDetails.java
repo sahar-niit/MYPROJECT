@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,40 +29,40 @@ public class CardDetails  implements Serializable {
 	@Column(name="cardId")
     private int cardID;
 	
-	@NotEmpty (message = "Please select card type.")
+	@NotBlank (message = "Please select card type.")
 	@Column(name="cardtype")
     private String cardType;
 	
-	@NotEmpty (message = "The card number must not be null.")
+	@NotBlank (message = "The card number must not be null.")
 	@Column(name="cardNumber")
     private String cardNumber;
 
-    @NotEmpty (message = "Please select expiry month.")
+    @NotBlank (message = "Please select expiry month.")
     @Column(name="expiryMonth")
     private String expiryMonth;
 
-	@NotEmpty (message = "Please select expiry year.")
+	@NotBlank (message = "Please select expiry year.")
 	 @Column(name="expiryYear")
     private String expiryYear;
 
-    @NotEmpty (message = "The CVV2/CVC2 number must not be null.")
+    @NotBlank (message = "The CVV2/CVC2 number must not be null.")
     @Column(name="cvNumber")
     private String cvNumber;
 
-    @NotEmpty (message = "The name must not be null.")
+    @NotBlank (message = "The name must not be null.")
     @Column(name="nameOnCard")
     private String nameOnCard;
     
-    @NotEmpty (message = "The ATM pin must not be null.")
+    @NotBlank (message = "The ATM pin must not be null.")
     @Column(name="atmPin")
     private String atmPin;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cartId")
     @JsonIgnore
     private Cart cart;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     @JsonIgnore
     private Customer usersDetail;

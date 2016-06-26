@@ -5,16 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +17,6 @@ import com.ecom.models.CartItem;
 import com.ecom.models.Customer;
 import com.ecom.models.Product;
 import com.ecom.services.CartItemService;
-import com.ecom.services.CartService;
 import com.ecom.services.CustomerServices;
 import com.ecom.services.ProductServices;
 
@@ -34,8 +27,7 @@ import com.ecom.services.ProductServices;
 @RestController
 
 public class CartController {
-	@Autowired
-    private CartService cartService;
+	
 
     @Autowired
     private CartItemService cartItemService;

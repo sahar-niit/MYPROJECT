@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
-
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -55,7 +55,7 @@ public class ProductDAO {
 		System.out.println(session);
 		Product p = (Product) session.load(Product.class, new Integer(id));
 		System.out.println(p.getName());
-		session.close();
+		
 		return p;
 	}
 	
@@ -71,9 +71,12 @@ public class ProductDAO {
 		session.close();
 		
 	}
-	public void storeFile(Product p)
+	@SuppressWarnings("deprecation")
+	public void storeFile(Product p, HttpServletRequest request)
 	{
-		 
+		System.out.println(request.getRealPath("/"));
+		 String path=request.getRealPath("/")+"resources\\Images\\"+p.getCategory()+"\\"+p.getImage();
+		 System.out.println(path);
 		MultipartFile file= p.getFile();
 	
 		if (!file.isEmpty()) {
@@ -83,7 +86,7 @@ public class ProductDAO {
 		System.out.println(file.getOriginalFilename());
 		
 		
-		File serverFile = new File("C:/sahar/Ecllipse/workscape/ElectronicsStore/src/main/webapp/resources/Images/"+p.getCategory()+"/"+p.getImage());
+		File serverFile = new File(path);
 		serverFile.createNewFile();
 	
 		BufferedOutputStream stream = new BufferedOutputStream(

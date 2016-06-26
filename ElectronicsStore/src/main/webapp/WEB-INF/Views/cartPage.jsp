@@ -24,7 +24,7 @@
 </div>
 <div  ng-app="myApp">
 	 
-	 <div  ng-controller = "myCtrl" ng-init="retrieveCart('${cartId}')">
+	 <div  ng-controller = "myCtrl" ng-init="retrieveCart()">
         <table class="table table-bordered table-striped fs13" >
 		  <thead>
 			  <tr>

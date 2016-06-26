@@ -11,10 +11,23 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="<c:url value='/resources/js/AngularjsController.js'/>"></script>
+  <style>
+  .msgblock {
+ color: blue;
+ background-color: lightgreen;
+ border: 3px solid blue;
+ padding: 8px;
+}
+  </style>
 </head>
 <body>
-<div class="container" ng-app="myApp" ng-controller="myCtrl">
+<div class="container" ng-app="myApp" ng-controller="myCtrl" ng-init="loadData()">
 <%@ include file="header.jsp" %>
+<c:if test="${not empty msg }">
+   <div class="msgblock">
+   <c:out value="${msg}" />
+   </div>
+ </c:if>
 	<div class="row">
         <div class="col-md-6">
     		<h2>Search</h2>
@@ -31,6 +44,9 @@
         </div>	
 	</div>
 	<c:set var="pid" value="${param.id}"></c:set>
+	<c:if test="${!(pid<=3)}" >
+		<c:set var="pid" value="4" />
+	</c:if>
 	<table class="table table-striped;">
 	<tr>
 	<th></th>
@@ -46,9 +62,9 @@
 	<td>{{product.qty}}</td>
 	<td>{{product.price}}</td>
 	<td>
-			<a href="details?id={{product.pid}}" >View</a>|
+			<a href="details?id={{product.pid}}" >View</a>
 			  <sec:authorize access="hasRole('ROLE_ADMIN')">
-			<a href="edit?id={{product.pid}}" >Edit</a>|
+			|<a href="edit?id={{product.pid}}" >Edit</a>|
 			<a href="delete?id={{product.pid}}" >Delete</a>
 			</sec:authorize>
 	</td>
@@ -62,9 +78,9 @@
 	<td>{{product.qty}}</td>
 	<td>{{product.price}}</td>
 	<td>
-			<a href="details?id={{product.pid}}" >View</a>|
+			<a href="details?id={{product.pid}}" >View</a>
 			  <sec:authorize access="hasRole('ROLE_ADMIN')">
-			<a href="edit?id={{product.pid}}" >Edit</a>|
+			|<a href="edit?id={{product.pid}}" >Edit</a>|
 			<a href="delete?id={{product.pid}}" >Delete</a>
 			</sec:authorize>
 	</td>

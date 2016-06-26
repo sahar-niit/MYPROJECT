@@ -31,7 +31,7 @@ public class CartDAO {
 	        return (Cart) session.get(Cart.class, cartId);
 	    }
 	   
-	    @Transactional
+	    
 	    public void update(Cart cart) {
 	        int cartId = cart.getCartId();
 	        double grandTotal = orderService.getOrderGrandTotal(cartId);

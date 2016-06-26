@@ -1,5 +1,4 @@
 package com.ecom.models;
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -13,19 +12,16 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotBlank;
-
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="Products")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
-public class Product  implements Serializable {
+public class Product implements Serializable {
 	
 	@Id
 	@SequenceGenerator(name = "prod_seq", sequenceName = "prod_seq")
@@ -53,7 +49,6 @@ public class Product  implements Serializable {
 	private String description;
 	@NotNull
 	@Transient
-	@JsonIgnore
 	private MultipartFile file;
     
 	

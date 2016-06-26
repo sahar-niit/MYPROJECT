@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,11 +52,11 @@ public class Customer  implements Serializable {
 	String address;
 	@Column(name="Enabled")
 	boolean enabled =true;
-		@OneToOne
+		@OneToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name="shipId")
 	    private ShippingAddress shippingAddress;
 
-	    @OneToOne
+	    @OneToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name = "cartId")
 	    @JsonIgnore
 	    private Cart cart;

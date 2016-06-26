@@ -3,6 +3,7 @@ package com.ecom.models;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,16 +22,16 @@ public class CustomerOrder  implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO,generator = "order_seq")
     private int orderId;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cartId")
     private Cart cart;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private Customer usersDetail;
 
 	
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="shipId")
     private ShippingAddress shippingAddress;
 

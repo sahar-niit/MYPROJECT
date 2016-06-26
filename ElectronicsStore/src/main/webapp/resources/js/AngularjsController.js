@@ -1,9 +1,16 @@
 var app = angular.module('myApp', []);
 app.controller("myCtrl", function($scope, $http) {
-    $http.get("data")
-    .then(function(response) {
+	
+	$scope.loadData = function (){
+		$http.get("data").then(function(response) {
         $scope.Data = response.data;
     });
+};
+$scope.loadDataById = function (pid){
+	$http.get("dataById/"+pid).then(function(response) {
+    $scope.Data = response.data;
+});
+};
 $scope.addItemToCart = function (itemId) {
 	
     $http.put("addItem/"+itemId).success(function () {

@@ -12,36 +12,35 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="<c:url value='/resources/js/AngularjsController.js'/>"></script>
-  <script src="<c:url value='/resources/js/AngularOrderController.js'/>"></script>
 </head>
 <body> 
-<div class="container"  ng-app="myApp" ng-controller="myCtrl" >
+<div class="container"  ng-app="myApp" ng-controller="myCtrl" ng-init="loadDataById('${param.id}')" >
 <%@ include file="header.jsp" %>
 <div>
-<div  ng-repeat="product in Data | filter: { pid: '${param.id}'}" >
+<div >
 <center>
-<img src="<c:url value='/resources/Images/{{product.category}}/{{product.image}}'/>" height="300px" width="300px" />
+<img src="<c:url value='/resources/Images/{{Data.category}}/{{Data.image}}'/>" height="300px" width="300px" />
 </center>
 <table class="table table-striped">
 <tr>
 	<th>Name</th>
-	<td>{{product.name}}</td>
+	<td>{{Data.name}}</td>
 </tr>
 <tr>
 	<th>Available Quantity</th>
-	<td>{{product.qty}}</td>
+	<td>{{Data.qty}}</td>
 </tr>
 <tr>
 	<th>Price</th>
-	<td>{{product.price}}</td>
+	<td>{{Data.price}}</td>
 </tr>
 <tr>
 	<th>Details</th>
-	<td>{{product.description}}</td>
+	<td>{{Data.description}}</td>
 </tr>
 <tr>
 	<th>Category</th>
-	<td>{{product.category}}</td>
+	<td>{{Data.category}}</td>
 </tr>
 
 </table>
@@ -55,12 +54,29 @@
 		<a href="<c:url value="disp?id=4" />" class="btn btn-primary">Back</a>
 			</td>
 			<td>	
+			<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="hasRole('ROLE_USER')">
 		<a href="#" class="btn btn-primary" ng-click="addItemToCart('${param.id}')">
 		<span class="glyphicon glyphicon-shopping-cart"></span>Add to cart
 							</a>
-							</td><td>
+							</sec:authorize>
+		  </sec:authorize>
+		  <sec:authorize access="isAnonymous()">
+		  <a href="login" class="btn btn-primary">
+		<span class="glyphicon glyphicon-shopping-cart"></span>Add to cart
+							</a>
+		  </sec:authorize>
+							</td>
+							<td>
+							<sec:authorize access="isAuthenticated()">
+							<sec:authorize access="hasRole('ROLE_USER')">
 										<a href="<c:url value='/memberShip'/>"  class="btn btn-primary"><span class="glyphicon glyphicon-hand-right"></span>View Cart</a>
-										   </td>
+										</sec:authorize>
+										</sec:authorize>
+										<sec:authorize access="isAnonymous()">
+											<a href="login"  class="btn btn-primary"><span class="glyphicon glyphicon-hand-right"></span>View Cart</a>
+										</sec:authorize>
+							</td>
 			</tr>						
 </table>
 

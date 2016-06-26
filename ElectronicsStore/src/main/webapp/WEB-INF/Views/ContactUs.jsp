@@ -13,8 +13,8 @@
   <script>
 function initialize() {
   var mapProp = {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
+    center:new google.maps.LatLng(18.987400,73.112265),
+    zoom:15,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
   var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
@@ -28,35 +28,36 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div>
 <center>
 
-<div id="googleMap" style="width:700px;height:280px;"></div>
+<div id="googleMap" style="width:100%;height:280px;"></div>
 </center>
 
 </div>
 <div class="row">
 <div class="col-sm-4">
 <h3>Address:</h3>
-<h2>
+<h5>
 <i>
-JK Road ,<br/>
-Paris
+JK Plaza ,<br/>
+Shivaji Chowk,<br/>
+Panvel
 </i>
-</h2>
+</h5>
 </div>
 <div class="col-sm-4">
 <h3>Phone No:</h3>
-<h2>
+<h5>
 <i>
 9975710762
 </i>
-</h2>
+</h5>
 </div>
 <div class="col-sm-4">
 <h3>Email us at:</h3>
-<h2>
+<h5>
 <i>
 <a href="sahar.niitfaculty@gmail.com">sahar.niitfaculty@gmail.com</a>
 </i>
-</h2>
+</h5>
 
 </div>
 </div>

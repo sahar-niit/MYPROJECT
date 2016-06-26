@@ -1,5 +1,7 @@
 package com.ecom.dao;
 
+import java.io.Serializable;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,7 +14,7 @@ import com.ecom.models.CustomerOrder;
 
 
 @Repository
-public class OrderDAO {
+public class OrderDAO implements Serializable {
 	 @Autowired
      private SessionFactory sessionFactory;
 @Transactional

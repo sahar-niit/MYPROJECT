@@ -12,7 +12,8 @@ C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\models\UserR
 C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\dao\CartItemDAO.java
 C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\dao\CardDetailDAO.java
 C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\services\ProductServices.java
-C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\controllers\CardDetailController.java
+C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\dao\ShippingDAO.java
+C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\services\ShippingServices.java
 C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\services\OrderService.java
 C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\controllers\ProductsController.java
 C:\sahar\Ecllipse\workscape\ElectronicsStore\src\main\java\com\ecom\services\CartItemService.java
